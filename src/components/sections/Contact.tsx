@@ -14,8 +14,8 @@ const INITIAL_STATE = Object.fromEntries(
 
 const emailjsConfig = {
   serviceId: "service_n9iq4q5", // Replace with your actual service ID
-  templateId: "template_4lunznl", // Replace with your actual template ID
-  userId: "qNWpOSjO6rvHGzRKe", // Replace with your actual user ID (public key)
+  templateId: "template_gex2ith", // Replace with your actual template ID
+  userId: "KWbz5awRMffnjUdE8", // Replace with your actual user ID (public key)
 };
 
 const Contact = () => {
@@ -34,53 +34,38 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    emailjs
-      .send(
+    if (formRef.current) {
+      emailjs.sendForm(
         emailjsConfig.serviceId,
         emailjsConfig.templateId,
-        {
-          form_name: form.name,
-          to_name: config.html.fullName,
-          from_email: form.email,
-          to_email: config.html.email,
-          message: form.message,
-        },
-        emailjsConfig.userId // Use userId here
-      )
-      .then(
+        formRef.current,
+        emailjsConfig.userId
+      ).then(
         () => {
           setLoading(false);
           alert("Thank you. I will get back to you as soon as possible.");
-
           setForm(INITIAL_STATE);
         },
         (error) => {
           setLoading(false);
-
-          console.log(error);
+          console.error("EmailJS error:", error);
           alert("Something went wrong.");
         }
       );
+    }
   };
 
   return (
-    <div
-      className={`flex flex-col-reverse gap-10 overflow-hidden xl:mt-12 xl:flex-row`}
-    >
+    <div className={`flex flex-col-reverse gap-10 overflow-hidden xl:mt-12 xl:flex-row`}>
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
         className="bg-black-100 flex-[0.75] rounded-2xl p-8"
       >
         <Header useMotion={false} {...config.contact} />
 
-        <form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className="mt-12 flex flex-col gap-8"
-        >
+        <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
           {Object.keys(config.contact.form).map((input) => {
-            const { span, placeholder } =
-              config.contact.form[input as keyof typeof config.contact.form];
+            const { span, placeholder } = config.contact.form[input as keyof typeof config.contact.form];
             const Component = input === "message" ? "textarea" : "input";
 
             return (
@@ -98,19 +83,13 @@ const Contact = () => {
               </label>
             );
           })}
-          <button
-            type="submit"
-            className="bg-tertiary shadow-primary w-fit rounded-xl px-8 py-3 font-bold text-white shadow-md outline-none"
-          >
+          <button type="submit" className="bg-tertiary shadow-primary w-fit rounded-xl px-8 py-3 font-bold text-white shadow-md outline-none">
             {loading ? "Sending..." : "Send"}
           </button>
         </form>
       </motion.div>
 
-      <motion.div
-        variants={slideIn("right", "tween", 0.2, 1)}
-        className="h-[350px] md:h-[550px] xl:h-auto xl:flex-1"
-      >
+      <motion.div variants={slideIn("right", "tween", 0.2, 1)} className="h-[350px] md:h-[550px] xl:h-auto xl:flex-1">
         <EarthCanvas />
       </motion.div>
     </div>
