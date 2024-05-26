@@ -13,26 +13,24 @@ const INITIAL_STATE = Object.fromEntries(
 );
 
 const emailjsConfig = {
-  serviceId: "service_mh05u6o",
-  templateId: "template_0m7v9w2",
-  userId: "LwYSDTqU9uNjRcJGfDjg9",
+  serviceId: "service_n9iq4q5", // Replace with your actual service ID
+  templateId: "template_4lunznl", // Replace with your actual template ID
+  userId: "qNWpOSjO6rvHGzRKe", // Replace with your actual user ID (public key)
 };
 
 const Contact = () => {
-  const formRef = useRef<React.LegacyRef<HTMLFormElement> | undefined>();
+  const formRef = useRef<HTMLFormElement>(null);
   const [form, setForm] = useState(INITIAL_STATE);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | undefined
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    if (e === undefined) return;
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement> | undefined) => {
-    if (e === undefined) return;
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
@@ -40,7 +38,6 @@ const Contact = () => {
       .send(
         emailjsConfig.serviceId,
         emailjsConfig.templateId,
-        form.current,
         {
           form_name: form.name,
           to_name: config.html.fullName,
@@ -48,7 +45,7 @@ const Contact = () => {
           to_email: config.html.email,
           message: form.message,
         },
-        emailjsConfig.userId
+        emailjsConfig.userId // Use userId here
       )
       .then(
         () => {
@@ -77,7 +74,6 @@ const Contact = () => {
         <Header useMotion={false} {...config.contact} />
 
         <form
-          // @ts-expect-error
           ref={formRef}
           onSubmit={handleSubmit}
           className="mt-12 flex flex-col gap-8"
@@ -93,7 +89,7 @@ const Contact = () => {
                 <Component
                   type={input === "email" ? "email" : "text"}
                   name={input}
-                  value={form[`${input}`]}
+                  value={form[input]}
                   onChange={handleChange}
                   placeholder={placeholder}
                   className="bg-tertiary placeholder:text-secondary rounded-lg border-none px-6 py-4 font-medium text-white outline-none"
