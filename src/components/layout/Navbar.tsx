@@ -78,7 +78,6 @@ const Navbar = () => {
                 active === nav.id ? "text-white" : "text-secondary"
               } cursor-pointer text-[18px] font-medium hover:text-white`}
             >
-              {/** Updated to check for external URLs **/}
               {nav.url ? (
                 <a href={nav.url} target="_blank" rel="noopener noreferrer">
                   {nav.title}
@@ -114,7 +113,6 @@ const Navbar = () => {
                     setToggle(!toggle);
                   }}
                 >
-                  {/** Updated to check for external URLs **/}
                   {nav.url ? (
                     <a
                       href={nav.url}
