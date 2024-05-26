@@ -35,6 +35,11 @@ import drone from "./drone.png";
 import sipho from "./sipho.jpeg";
 import vikrant from "./Vikrant.webp";
 import vishesh from "./Vishesh.webp";
+import pythonIcon from './tech/python.svg'; // Add this line
+import javaIcon from './tech/java.svg'; // Add this line
+import awsIcon from './tech/aws.svg'; // Add this line
+import gcpIcon from './tech/gcp.svg'; // Add this line
+import huggingIcon from './tech/hugg.svg';
 
 
 export {
@@ -72,4 +77,9 @@ export {
   sipho,
   vikrant,
   vishesh,
+  pythonIcon,
+  gcpIcon,
+  awsIcon,
+  javaIcon,
+  huggingIcon,
 };

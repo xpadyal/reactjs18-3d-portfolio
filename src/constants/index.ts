@@ -32,6 +32,13 @@ import {
   jobit,
   tripguide,
   threejs,
+  pythonIcon,
+  awsIcon,
+  gcpIcon,
+  javaIcon,
+  huggingIcon,
+
+
 } from "../assets";
 import { AI, drone, sipho, skin, vikrant, vishesh } from "../assets/index";
 
@@ -80,14 +87,8 @@ const services: TService[] = [
 ];
 
 const technologies: TTechnology[] = [
-  {
-    name: "HTML 5",
-    icon: html,
-  },
-  {
-    name: "CSS 3",
-    icon: css,
-  },
+ 
+  
   {
     name: "JavaScript",
     icon: javascript,
@@ -100,17 +101,35 @@ const technologies: TTechnology[] = [
     name: "React JS",
     icon: reactjs,
   },
-  {
-    name: "Redux Toolkit",
-    icon: redux,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: tailwind,
-  },
+  // 
+  
+  // {
+  //   name: "Tailwind CSS",
+  //   icon: tailwind,
+  // },
   {
     name: "Node JS",
     icon: nodejs,
+  },
+  {
+    name: "Python",
+    icon: pythonIcon,
+  },
+  {
+    name: "Java",
+    icon: javaIcon,
+  },
+  {
+    name: "HuggingFace",
+    icon: huggingIcon,
+  },
+  {
+    name: "AWS",
+    icon: awsIcon,
+  },
+  {
+    name: "GCP",
+    icon: gcpIcon,
   },
   {
     name: "MongoDB",
@@ -124,10 +143,10 @@ const technologies: TTechnology[] = [
     name: "git",
     icon: git,
   },
-  {
-    name: "figma",
-    icon: figma,
-  },
+  // {
+  //   name: "figma",
+  //   icon: figma,
+  // },
   {
     name: "docker",
     icon: docker,
