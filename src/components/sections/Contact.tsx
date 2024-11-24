@@ -87,6 +87,20 @@ const Contact = () => {
             {loading ? "Sending..." : "Send"}
           </button>
         </form>
+
+        {/* Add social links */}
+        <div className="mt-8 flex items-center justify-center gap-4">
+          <a
+            href="https://www.linkedin.com/in/sahil-padyal"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+          >
+            LinkedIn
+          </a>
+        </div>
+
+
       </motion.div>
 
       <motion.div variants={slideIn("right", "tween", 0.2, 1)} className="h-[350px] md:h-[550px] xl:h-auto xl:flex-1">
